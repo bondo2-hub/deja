@@ -7,48 +7,38 @@ def setup_deja():
     """Creates a fresh instance of Deja before each test."""
     return Deja()
 
-
-def test_add_category(setup_deja):
-    """Tests adding a valid category."""
+def test_find_category(setup_deja):
     ds = setup_deja
-    ds.add("Fruit", ["Banana", "Mango"])
-    assert "Fruit" in ds.deja[0]
+    ds.add("Tech", ["Laptop", "Phone"])
+    result = ds.find_category("Tech")
+    assert result == "Category found at index: 0"
 
-
-def test_duplicate_category(setup_deja):
-    """Tests that duplicate categories raise an error."""
+def test_find_non_existent_category(setup_deja):
     ds = setup_deja
-    ds.add("Fruit", ["Banana"])
+    ds.add("Dummy", ["Placeholder"])
     with pytest.raises(ValueError):
-        ds.add("Fruit", ["Apple"])  # Should raise error
+        ds.find_category("Nonexistent")
 
-
-def test_remove_category(setup_deja):
-    """Tests removing a category by name."""
+def test_rename_category(setup_deja):
     ds = setup_deja
-    ds.add("Vegetables", ["Carrot", "Broccoli"])
-    ds.removeby_cat("Vegetables")
-    assert "Vegetables" not in [list(data.keys())[0]
-                                for data in ds.deja.values()]
+    ds.add("Games", ["Chess", "Poker"])
+    ds.rename_category("Games", "Board Games")
+    assert "Board Games" in ds.deja[0]
 
-
-def test_remove_non_existent_category(setup_deja):
-    """Tests that removing a nonexistent category raises an error."""
+def test_rename_non_existent_category(setup_deja):
     ds = setup_deja
+    ds.add("Dummy", ["Placeholder"])
     with pytest.raises(ValueError):
-        ds.removeby_cat("Nonexistent")
+        ds.rename_category("Invalid", "NewCategory")
 
-
-def test_remove_by_index(setup_deja):
-    """Tests removing an entry by index."""
+def test_invalid_add(setup_deja):
     ds = setup_deja
-    ds.add("Dairy", ["Milk", "Cheese"])
-    ds.removeby_idx(0)
-    assert 0 not in ds.deja
+    with pytest.raises(TypeError):
+        ds.add(123, ["Item"])
+    with pytest.raises(TypeError):
+        ds.add("Category", 123)
 
-
-def test_remove_non_existent_index(setup_deja):
-    """Tests that removing a nonexistent index raises an error."""
+def test_find_in_empty_structure(setup_deja):
     ds = setup_deja
-    with pytest.raises(KeyError):
-        ds.removeby_idx(99)
+    with pytest.raises(RuntimeError):
+        ds.find_category("AnyCategory")

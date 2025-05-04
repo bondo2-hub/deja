@@ -1,0 +1,13 @@
+MESSAGES = {
+    "category_exists": "You can't have items with the same category name.",
+    "invalid_category_type": "Category name must be a string.",
+    "invalid_items_type": "Items must be either a list or a string.",
+    "no_categories_exist": "No categories exist yet.",
+    "category_not_found": "Category '{category}' does not exist.",
+    "category_renamed": "Category '{old}' renamed to '{new}'.",
+    "index_not_found": "Index '{index}' not found.",
+    "unexpected_error": "Unexpected Error: {error}",
+    "category_found": "Category found at index: {index}",
+    "data_header": "📋  {class_name} DATA STRUCTURE",
+    "index_display": "🔢 Index: {idx} | 📂 Category: {category} → 📦 Items: {items}",
+}
