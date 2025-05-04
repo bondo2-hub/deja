@@ -10,4 +10,7 @@ MESSAGES = {
     "category_found": "Category found at index: {index}",
     "data_header": "📋  {class_name} DATA STRUCTURE",
     "index_display": "🔢 Index: {idx} | 📂 Category: {category} → 📦 Items: {items}",
+    "invalid_update_type": "Category name, target item, and new item must all be strings.",
+    "item_updated": "'{old}' updated to '{new}' in '{category}'.",
+    "item_not_found": "Item '{item}' not found in '{category}'.",
 }

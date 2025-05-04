@@ -19,20 +19,35 @@ Deja is an indexed, hierarchical data structure designed for efficient categoriz
 ```python
 from deja import Deja
 
-# Initialize Deja
+# Initialize Deja instance
 ds = Deja()
 
 # Add categories with items
 ds.add("Fruit", ["Apple", "Banana", "Mango"])
 ds.add("Dairy", ["Milk", "Cheese"])
-ds.add("Computer", ["CPU"])
+ds.add("Tech", ["Laptop", "Phone"])
+ds.add("Movies", ["Inception", "Interstellar"])
+ds.display()  # Show current structure
+
+# Find a category
+print(ds.find_category("Tech"))
+
+# Rename a category
+print(ds.rename_category("Movies", "Films"))
+ds.display()  # Verify renaming worked
+
+# Update an item within a category
+print(ds.update_item("Fruit", "Banana", "Blueberry"))
+ds.display()  # Verify update
 
 # Remove a category by name
 ds.removeby_cat("Dairy")
-ds.removeby_idx(1)
+ds.display()  # Verify removal
 
-# Display stored data
-ds.display()
+# Remove an item by index and reindex
+ds.removeby_idx(0)  # Remove "Fruit"
+ds.display()  # Verify reindexing
+
 ```
 
 ## ❓ Frequently Asked Questions (FAQ)
